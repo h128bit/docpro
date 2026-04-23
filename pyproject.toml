@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "docpro"
+version = "1.0.0dev4"
+description = "OCR module"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    {name = "h128bit"}
+]
+urls = {Homepage = "https://gitlab.fcpriirf.ru/t.asmus/websearchagent"}
+keywords = ["llm", "ocr", "onnx"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+]
+dependencies = [
+    "litellm",
+    "onnxruntime",
+    "pillow",
+    "numpy",
+    "opencv-python",
+    "PyMuPDF",
+    "python-dotenv"
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+exclude = ["docs*", "tests*"]

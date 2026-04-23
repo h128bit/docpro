@@ -1,0 +1,3 @@
+from docpro.modules.docs_processors.document_processor import DocProcessor
+from docpro.modules.docs_processors.ocr_processor import GLMOCRProcessor
+from docpro.modules.docs_processors.pdf_processor import PDFGLMOCRProcessor
