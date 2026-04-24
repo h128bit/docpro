@@ -46,6 +46,11 @@ class PPDoclayoutModelRuntime(BaseProcessorInterface):
                  normalize_coef: int=255,
                  classes: list[str]|None=None
                  ):
+        
+        """
+        For work with https://huggingface.co/alex-dinh/PP-DocLayoutV3-ONNX
+        """
+
         self.model_path = model_path
 
         self.confidence = confidence
@@ -61,12 +66,11 @@ class PPDoclayoutModelRuntime(BaseProcessorInterface):
     def preprocess(self, 
                    image: np.ndarray) -> tuple[np.ndarray, float, float]:
         orig_h, orig_w = image.shape[:2]
-        target_h, target_w = self.image_size
+        target_w, target_h = self.image_size
         scale_h = target_h / orig_h
         scale_w = target_w / orig_w
 
-        new_h, new_w = int(orig_h * scale_h), int(orig_w * scale_w)
-        resized = cv2.resize(image, (new_w, new_h), interpolation=cv2.INTER_LINEAR)
+        resized = cv2.resize(image, (target_w, target_h), interpolation=cv2.INTER_LINEAR)
 
         input_blob = resized.astype(np.float32) / self.norm_coef
 
@@ -106,8 +110,10 @@ class PPDoclayoutModelRuntime(BaseProcessorInterface):
         output_names = [o.name for o in self._model.get_outputs()]
 
         image = np.array(image)
+        # orig_h, orig_w = image.shape[:2]
         input_blob, scale_h, scale_w = self.preprocess(image)
-        preprocess_shape = [np.array([800, 800], dtype=np.float32)]
+        
+        preprocess_shape = [np.array(self.image_size, dtype=np.float32)]
         input_feed = {input_names[0]: preprocess_shape,
                     input_names[1]: input_blob,
                     input_names[2]: [[scale_h, scale_w]]}

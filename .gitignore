@@ -2,7 +2,7 @@ pp_model/
 test_files/
 test.*
 test_config.env
-
+test_modules.*
 
 
 # Byte-compiled / optimized / DLL files

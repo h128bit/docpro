@@ -26,7 +26,7 @@ class GLMOCRProcessor(DocProcessor):
             else:
                 task = "Text Recognition: formated result as markdown"
             
-            text = self.recognize_part(page, box, task)
+            text = self.recognize_part(page, box, task)["text"]
 
             box["text"] = text
         

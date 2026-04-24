@@ -15,7 +15,7 @@ class PDFGLMOCRProcessor(DocProcessor):
         super().__init__(doc_layout, ocr)
 
     
-    def get_text_lines(self, page, clip_box):
+    def get_text_lines(self, page, clip_box) -> str:
         text_boxes = page.get_text("dict", 
                                    clip=clip_box, 
                                    flags=fitz.TEXT_PRESERVE_WHITESPACE)["blocks"]
@@ -31,7 +31,7 @@ class PDFGLMOCRProcessor(DocProcessor):
 
 
     def process(self, 
-                page: fitz.Page):
+                page: fitz.Page) -> list[dict]:
         image_page = fitz_to_pil(page)
         imw, imh = image_page.size
 
@@ -45,7 +45,7 @@ class PDFGLMOCRProcessor(DocProcessor):
         for i in range(len(boxes)):
             box = boxes[i]
             if box["class_name"] == "table":
-                text = self.recognize_part(image_page, box, "Table Recognition: formatted as html") 
+                text = self.recognize_part(image_page, box, "Table Recognition: formatted as html")["text"]
 
             else:
                 clip_box = [
@@ -56,6 +56,8 @@ class PDFGLMOCRProcessor(DocProcessor):
                 ]
                 text = self.get_text_lines(page, clip_box)
             box["text"] = text
+
+        return boxes
         
 
         

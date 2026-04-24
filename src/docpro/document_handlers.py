@@ -17,7 +17,7 @@ from docpro.utils import file_or_bytes_to_iobytes, fitz_to_pil
 
 
 class DocumentProcessor(BaseProcessorInterface):
-    def __init__(self, path_to_config: os.PathLike):
+    def __init__(self, path_to_config: str|os.PathLike):
         dotenv.load_dotenv(path_to_config)
 
         try:
@@ -48,15 +48,16 @@ class DocumentProcessor(BaseProcessorInterface):
 
 
     def process(self, 
-                file: bytes|io.BytesIO|os.PathLike):
+                file: bytes|io.BytesIO|str|os.PathLike,
+                force_ocr: bool=False):
         
         buffer = file_or_bytes_to_iobytes(file)
 
         processed_pages = []
-        with fitz.open(buffer) as document:
+        with fitz.open(stream=buffer) as document:
             for page in document:
                 check_text = page.get_text().strip()
-                if check_text:
+                if force_ocr or not check_text:
                     page = fitz_to_pil(page)
                     blocks = self.ocr_processor.process(page)
                 else: 

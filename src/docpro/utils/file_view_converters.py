@@ -5,10 +5,10 @@ from PIL import Image
 from pathlib import Path
 
 
-def file_or_bytes_to_iobytes(object: bytes|io.BytesIO|os.PathLike) -> io.BytesIO:
+def file_or_bytes_to_iobytes(object: bytes|io.BytesIO|str|os.PathLike) -> io.BytesIO:
     if isinstance(object, (str, Path)):
         with open(object, "rb") as f:
-            data = f.read(object)
+            data = f.read()
         buffer = io.BytesIO(data)
     elif isinstance(object, bytes):
         buffer = io.BytesIO(object)
