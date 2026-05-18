@@ -6,7 +6,7 @@ class BlocksToMarkdownFormatter(BaseProcessorInterface):
     def __init__(self):
         super().__init__()
 
-    def process(self, blocks):
+    def process(self, blocks) -> str:
         result_string = []
 
         for block in blocks:
