@@ -32,6 +32,22 @@ class PDFGLMOCRProcessor(DocProcessor):
 
     def process(self, 
                 page: fitz.Page) -> list[dict]:
+        
+        """
+        return list with dicts:
+        {
+        class_id,
+        class_name,
+        confidence,
+        reader_order,
+        text,
+        xmax,
+        xmin,
+        ymax,
+        ymin
+        }
+        """
+
         image_page = fitz_to_pil(page)
         imw, imh = image_page.size
 

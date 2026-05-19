@@ -11,7 +11,7 @@ from docpro.modules import (
     GLMOCRVLLMConnector,
     BaseProcessorInterface,
     BlocksToMarkdownFormatter,
-    DammuyFormatter
+    BlockFormatter
     )
 from docpro.utils import file_or_bytes_to_iobytes, fitz_to_pil
 
@@ -41,7 +41,6 @@ class DocumentProcessor(BaseProcessorInterface):
 
         self.ocr_processor = GLMOCRProcessor(doc_layout=layout_model,
                                              ocr=ocr_connector)
-        # formatter_type = os.getenv("DOCPRO_OUT_FORAMT", None)
 
         
                 
@@ -57,7 +56,7 @@ class DocumentProcessor(BaseProcessorInterface):
             case "markdown":
                 formatter = BlocksToMarkdownFormatter()
             case "blocks":
-                formatter = DammuyFormatter()
+                formatter = BlockFormatter()
             case _:
                 raise ValueError(f"Unsupported formatter type. Expected `markdown` or `blocks`. Got {formatter_type}")
         

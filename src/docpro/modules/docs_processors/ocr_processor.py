@@ -15,6 +15,20 @@ class GLMOCRProcessor(DocProcessor):
 
     def process(self, 
                 page: Image.Image):
+        """
+        Return: lists with dict:
+        {
+        class_id,
+        class_name,
+        confidence,
+        read_order,
+        text,
+        xmax,
+        xmin,
+        ymax,
+        ymin
+        }
+        """
         boxes = self.layout_analyze(page, ignor_classes=["header_image", "image", "seal"])
 
         for i in range(len(boxes)):

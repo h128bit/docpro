@@ -1,1 +1,1 @@
-from docpro.modules.formatters.formatters import BlocksToMarkdownFormatter, DammuyFormatter
+from docpro.modules.formatters.formatters import BlocksToMarkdownFormatter, BlockFormatter
