@@ -51,7 +51,7 @@ config.env
 DOCPRO_VLLM_MODEL_NAME = hosted_vllm/glm-ocr
 DOCPRO_VLLM_MODEL_URL = http:127.0.0.1/v1/chat/completions
 
-DOCPRO_LAYOUT_MODEL_PATH = path_to\PP-DocLayoutV3.onnx
+DOCPRO_LAYOUT_MODEL_PATH = path_to\PP-DocLayoutV3.onnx  # https://huggingface.co/alex-dinh/PP-DocLayoutV3-ONNX
 '''
 
 CONFIG_PATH = "config.env"
