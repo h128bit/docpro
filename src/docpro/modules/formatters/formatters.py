@@ -4,25 +4,33 @@ from docpro.modules.interfaces import BaseProcessorInterface
 
 class BlocksToMarkdownFormatter(BaseProcessorInterface):
     def __init__(self):
+        """Initializes the BlocksToMarkdownFormatter."""
+
         super().__init__()
 
     def process(self, blocks: list[dict]) -> str:
         """
-        Process list of dicts as  
-        {
-            class_id: numpy int,
-            class_name: str,
-            confidence: numpy float,
-            read_order: numpy int,
-            text: str,
-            xmax: numpy float,
-            xmin: numpy float,
-            ymax: numpy float,
-            ymin: numpy float
-        }
+        Processes a list of document blocks into a single Markdown string.
 
-        Return: str
-        Join strings from input blocks sorted when by `read_order`
+        Sorts the input blocks by their reading order and joins their text 
+        content with newline characters.
+
+        Args:
+            blocks (list[dict]): A list of dictionaries representing document 
+                blocks. Each dictionary is expected to contain the following keys:
+                - class_id (numpy.int): The class identifier.
+                - class_name (str): The name of the class.
+                - confidence (numpy.float): The detection confidence score.
+                - read_order (numpy.int): The reading order of the block.
+                - text (str): The text content of the block.
+                - xmax (numpy.float): The maximum x-coordinate of the bounding box.
+                - xmin (numpy.float): The minimum x-coordinate of the bounding box.
+                - ymax (numpy.float): The maximum y-coordinate of the bounding box.
+                - ymin (numpy.float): The minimum y-coordinate of the bounding box.
+
+        Returns:
+            str: A single string containing the text from all blocks, 
+            sorted by reading order and joined by newlines.
         """
 
         result_string = []
@@ -38,39 +46,46 @@ class BlocksToMarkdownFormatter(BaseProcessorInterface):
 
 class BlockFormatter(BaseProcessorInterface):
     def __init__(self):
+        """Initializes the BlockFormatter."""
+
         super().__init__()
     
     def process(self, blocks: list[dict]) -> list[dict]:
         """
-        Process list of dicts as  
-        {
-            class_id: numpy int,
-            class_name: str,
-            confidence: numpy float,
-            read_order: numpy int,
-            text: str,
-            xmax: numpy float,
-            xmin: numpy float,
-            ymax: numpy float,
-            ymin: numpy float
-        }
+        Formats and converts a list of document blocks into a standardized structure.
 
-        Return: list of dicts as
-        {
-            class_id: int,
-            class_name: str,
-            confidence: float,
-            read_order: int,
-            text: str,
-            box: {
-                xmax: float,
-                xmin: float,
-                ymax: float,
-                ymin: float
-                }
-        }
+        Iterates through the input blocks, converts numpy data types to native 
+        Python types, and restructures the bounding box coordinates into a 
+        nested dictionary.
 
+        Args:
+            blocks (list[dict]): A list of dictionaries representing document 
+                blocks. Each dictionary is expected to contain the following keys:
+                - class_id (numpy.int): The class identifier.
+                - class_name (str): The name of the class.
+                - confidence (numpy.float): The detection confidence score.
+                - read_order (numpy.int): The reading order of the block.
+                - text (str): The text content of the block.
+                - xmax (numpy.float): The maximum x-coordinate of the bounding box.
+                - xmin (numpy.float): The minimum x-coordinate of the bounding box.
+                - ymax (numpy.float): The maximum y-coordinate of the bounding box.
+                - ymin (numpy.float): The minimum y-coordinate of the bounding box.
+
+        Returns:
+            list[dict]: A list of formatted dictionaries. Each dictionary contains:
+                - class_id (int): The class identifier.
+                - class_name (str): The name of the class.
+                - confidence (float): The detection confidence score.
+                - read_order (int): The reading order of the block.
+                - text (str): The text content of the block.
+                - box (dict): A nested dictionary containing the bounding box 
+                  coordinates with the following keys:
+                    - xmax (float): The maximum x-coordinate.
+                    - xmin (float): The minimum x-coordinate.
+                    - ymax (float): The maximum y-coordinate.
+                    - ymin (float): The minimum y-coordinate.
         """
+
         results_blocks = []
 
         for block in blocks:
