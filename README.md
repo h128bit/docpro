@@ -64,4 +64,4 @@ result = doc_proc.process(PATH_TO_FILE, force_ocr=True)
 pprint(result)
 ```
 
-For more see [documentation](h128bit.github.io/docpro/)
+For more see [documentation](https://h128bit.github.io/docpro/)
