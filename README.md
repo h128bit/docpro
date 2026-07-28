@@ -14,7 +14,7 @@
   <a href="https://github.com/BerriAI/litellm">
     <img src="https://img.shields.io/badge/LiteLLM-FF6B35?style=flat-square" alt="LiteLLM"/>
   </a>
-  <a href="https://username.github.io/docpro/">
+  <a href="https://h128bit.github.io/docpro/">
     <img src="https://img.shields.io/badge/Docs-GitHub%20Pages-0A5C36?style=flat-square&logo=github&logoColor=white" alt="Docs"/>
   </a>
 </p>
