@@ -1,4 +1,5 @@
 # Document Processor
+
 <p align="center">
 <img src="images/docpro-logo.png" alt="Document Processor" width="400" height="400">
 </p>
@@ -24,20 +25,23 @@
   <img src="https://img.shields.io/badge/LLM_Document_Parsing-✓-E67E22?style=flat-square" alt="Parsing"/>
 </p>
 
+## About
 
-## About 
-OCR python package. 
-Python module for easy embed ocr module in you app. 
-Module support GLM OCR run on VLLM via LiteLLM. 
+OCR python package.
+Python module for easy embed ocr module in you app.
+Module support GLM OCR run on VLLM via LiteLLM.
 Also you can build your own configuration using ready-made modules.
 
 ## Getting Started
-### Insatll 
+
+### Insatll
+
 ```bash
 pip install git+https://github.com/h128bit/docpro
 ```
 
 ### Quick start
+
 ```python
 from docpro import DocumentProcessor
 from pprint import pprint
@@ -60,4 +64,4 @@ result = doc_proc.process(PATH_TO_FILE, force_ocr=True)
 pprint(result)
 ```
 
-For more see documentation
+For more see [documentation](h128bit.github.io/docpro/)
