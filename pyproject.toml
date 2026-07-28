@@ -11,7 +11,7 @@ requires-python = ">=3.10"
 authors = [
     {name = "h128bit"}
 ]
-urls = {Homepage = "https://gitlab.fcpriirf.ru/t.asmus/websearchagent"}
+urls = {Homepage = "https://github.com/h128bit/docpro"}
 keywords = ["llm", "ocr", "onnx"]
 classifiers = [
     "Programming Language :: Python :: 3",
