@@ -1,6 +1,6 @@
 # Document Processor
 <p align="center">
-<img src="images\docpro-logo.png" alt="Document Processor" width="400" height="400">
+<img src="images/docpro-logo.png" alt="Document Processor" width="400" height="400">
 </p>
 
 <p align="center">
